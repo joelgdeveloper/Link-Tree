@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
 import {
   getFirestore,
   collection,
@@ -11,7 +12,6 @@ import {
   setDoc,
   deleteDoc,
 } from "firebase/firestore";
-import { getAuth } from "firebase/auth";
 import {
   getStorage,
   ref,
@@ -54,3 +54,52 @@ export const userExist = async (uid) => {
   //3 get nos retorna el documento
   return res.exists(); //nos regresa true o false, nos dice si el documento existe o no
 };
+
+export const existsUserName = async(username) => {
+  const users = [];
+  const docsRef = collection(db, 'users')
+  const q = query(docsRef, where('username', '==', username));
+
+  const querySnapshot = await getDocs(q); //nos dara un resultado, si no existe nuestro arreglo estara vacio
+
+  querySnapshot.forEach(doc => { 
+    users.push(doc.data());
+  });
+
+  return users.length > 0 ? users[0].uid : null;
+
+}
+
+export const registerNewUser = async(user) => {
+  try {
+    const collectionRef = collection(db, 'users');
+    const docRef = doc(collectionRef, user.uid);
+    //hay dos formas de generar un documento, una con addDoc y otra con setDoc
+    //usamos addDoc cuando no nos importa como se va a llamar el documento
+    await setDoc(docRef, user);
+  } catch (error) {
+    
+  }
+}
+
+export const updateUser = async(user) => {
+  try {
+    const collectionRef = collection(db, 'users');
+    const docRef = doc(collectionRef, user.uid);
+    await setDoc(docRef, user);
+  } catch (error) {
+    
+  }
+} 
+
+
+export const getUserInfo = async(uid) => {
+  try {
+    const docRef = doc(db, 'users', uid);
+    const document = await getDoc(docRef);
+  
+    return document.data()
+  } catch (error) {
+    
+  }
+}

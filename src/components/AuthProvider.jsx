@@ -1,10 +1,11 @@
+import { onAuthStateChanged } from "firebase/auth";
+import { useEffect } from "react";
 import {
-  GoogleAuthProvider,
-  onAuthStateChanged,
-  signInWithPopup,
-} from "firebase/auth";
-import { useEffect, useState } from "react";
-import { auth, userExist } from "../firebase/firebase";
+  auth,
+  getUserInfo,
+  registerNewUser,
+  userExist,
+} from "../firebase/firebase";
 
 import { useNavigate } from "react-router-dom";
 
@@ -22,14 +23,29 @@ const AuthProvider = ({
   }, [navigate, onUserLoggedIn, onUserNotLoggedIn, onUserNotRegistered]);
 
   const handleUserStateChanged = async (user) => {
+    console.log(user);
     if (user) {
       const isRegistered = await userExist(user.uid); //todas las funciones en firebase son asincronas, siempre tenemos que esperar por ellas
-      console.log(isRegistered);
+
       if (isRegistered) {
-        // Redirigir a dashboard
-        onUserLoggedIn(user);
+        const userInfo = await getUserInfo(user.uid);
+        console.log(userInfo);
+        if (userInfo.processCompleted) {
+          // Redirigir a dashboard
+          onUserLoggedIn(userInfo);
+        }else {
+          onUserNotRegistered(userInfo);
+        }
+
       } else {
         // Redirigir a choose username
+        await registerNewUser({
+          uid: user.uid,
+          displayName: user.displayName,
+          profilePicture: "",
+          username: "",
+          processCompleted: false,
+        });
         onUserNotRegistered(user);
       }
       console.log(user.displayName);
