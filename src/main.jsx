@@ -20,7 +20,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <Route path="/dashboard/profile" element={<EditProfileView />} />
       <Route path="signout" element={<SignOutView />} />
       <Route path="u/:username" element={<PublicProfileView />} />
-      <Route path="Choose-username" element={<ChooseUsernameView />} />
+      <Route path="/choose-username" element={<ChooseUsernameView />} />
     </Routes>
   </BrowserRouter>
 );
