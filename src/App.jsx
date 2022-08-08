@@ -1,13 +1,5 @@
-
-
 function App() {
-  
-
-  return (
-    <div>
-     
-    </div>
-  )
+  return <div>{import.meta.env.VITE_SALUDO}</div>;
 }
 
-export default App
+export default App;
