@@ -46,60 +46,81 @@ export const userExist = async (uid) => {
 
   //funcion que busca la referencia
   const res = await getDoc(docRef);
-  console.log(docRef);
-  console.log(res);
-  console.log(res.exists()); //nos arroja false
+  // console.log(docRef);
+  // console.log(res);
+  //console.log(res.exists()); //nos arroja false / true
 
   //hay 3 metodos, 1 data nos regresa la informacion de ese documento, 2 exists nos regresa true o false
   //3 get nos retorna el documento
   return res.exists(); //nos regresa true o false, nos dice si el documento existe o no
 };
 
-export const existsUserName = async(username) => {
+export const existsUserName = async (username) => {
   const users = [];
-  const docsRef = collection(db, 'users')
-  const q = query(docsRef, where('username', '==', username));
+  const docsRef = collection(db, "users");
+  const q = query(docsRef, where("username", "==", username));
 
   const querySnapshot = await getDocs(q); //nos dara un resultado, si no existe nuestro arreglo estara vacio
 
-  querySnapshot.forEach(doc => { 
+  querySnapshot.forEach((doc) => {
     users.push(doc.data());
   });
 
   return users.length > 0 ? users[0].uid : null;
+};
 
-}
-
-export const registerNewUser = async(user) => {
+export const registerNewUser = async (user) => {
   try {
-    const collectionRef = collection(db, 'users');
+    const collectionRef = collection(db, "users");
     const docRef = doc(collectionRef, user.uid);
     //hay dos formas de generar un documento, una con addDoc y otra con setDoc
     //usamos addDoc cuando no nos importa como se va a llamar el documento
     await setDoc(docRef, user);
-  } catch (error) {
-    
-  }
-}
+  } catch (error) {}
+};
 
-export const updateUser = async(user) => {
+export const updateUser = async (user) => {
   try {
-    const collectionRef = collection(db, 'users');
+    const collectionRef = collection(db, "users");
     const docRef = doc(collectionRef, user.uid);
     await setDoc(docRef, user);
-  } catch (error) {
-    
-  }
-} 
+  } catch (error) {}
+};
 
-
-export const getUserInfo = async(uid) => {
+export const getUserInfo = async (uid) => {
   try {
-    const docRef = doc(db, 'users', uid);
+    const docRef = doc(db, "users", uid);
     const document = await getDoc(docRef);
-  
-    return document.data()
+
+    return document.data();
+  } catch (error) {}
+};
+
+export const insertNewLink = async (link) => {
+  try {
+    const docRef = collection(db, "links");
+    const res = await addDoc(docRef, link);
+    return res;
   } catch (error) {
-    
+    console.log(error);
   }
-}
+};
+
+export const getLinks = async (uid) => {
+  const links = [];
+  try {
+    const collectionRef = collection(db, "links");
+    const q = query(collectionRef, where("uid", "==", uid));
+    const querySnapshot = await getDocs(q); //nos trae un arreglo de resultados
+
+    querySnapshot.forEach((doc) => {
+      const link = { ...doc.data() };
+      link.docId = doc.id;
+      links.push(link);
+    });
+
+    return links;
+  } catch (error) {
+    console.log(error);
+  }
+};

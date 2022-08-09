@@ -1,5 +1,5 @@
-import { onAuthStateChanged } from "firebase/auth";
 import { useEffect } from "react";
+import { onAuthStateChanged } from "firebase/auth";
 import {
   auth,
   getUserInfo,
@@ -23,8 +23,9 @@ const AuthProvider = ({
   }, [navigate, onUserLoggedIn, onUserNotLoggedIn, onUserNotRegistered]);
 
   const handleUserStateChanged = async (user) => {
-    console.log(user);
+    
     if (user) {
+      
       const isRegistered = await userExist(user.uid); //todas las funciones en firebase son asincronas, siempre tenemos que esperar por ellas
 
       if (isRegistered) {
