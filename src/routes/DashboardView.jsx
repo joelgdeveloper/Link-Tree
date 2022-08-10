@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import DashboardWrapper from "../components/DashboardWrapper";
 import { v4 as uuid } from "uuid";
 import { getLinks, insertNewLink } from "../firebase/firebase";
+import LinkTree from "../components/LinkTree";
 
 export default function DashboardView() {
   const [state, setState] = useState(0);
@@ -67,6 +68,8 @@ export default function DashboardView() {
       setLinks([...links, newLink]);
     }
   };
+  const handleDeleteLink = () => {};
+  const handleUpdateLink = () => {};
 
   return (
     <DashboardWrapper>
@@ -84,9 +87,13 @@ export default function DashboardView() {
 
         <div>
           {links.map((link) => (
-            <div key={link.id}>
-              <a href={link.url}>{link.title}</a>
-            </div>
+            <LinkTree
+              key={link.docId}
+              title={link.title}
+              url={link.url}
+              onDelete={handleDeleteLink}
+              onUpdate={handleUpdateLink}
+            ></LinkTree>
           ))}
         </div>
       </div>
