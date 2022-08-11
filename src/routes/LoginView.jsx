@@ -1,15 +1,13 @@
 import { useState } from "react";
 import { auth } from "../firebase/firebase";
-import {
-  GoogleAuthProvider,
-  signInWithPopup,
-} from "firebase/auth";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 import AuthProvider from "../components/AuthProvider";
 import { useNavigate } from "react-router-dom";
 
-export default function LoginView() {
+import style from "./css/loginView.module.css";
 
+export default function LoginView() {
   const navigate = useNavigate();
 
   /*
@@ -21,6 +19,7 @@ export default function LoginView() {
     4: no hay nadie logueado
     5: ya existe el username
     6: nuevo username, click para continuar
+    7: Username no existe
   */
   const [state, setCurrentState] = useState(0);
 
@@ -58,8 +57,21 @@ export default function LoginView() {
 
   if (state === 4) {
     return (
-      <div>
-        <button onClick={handleOnClick}>Login with Google</button>
+      <div className={style.loginView}>
+        <div>
+          <h1>Link Tree</h1>
+        </div>
+        <div>
+          <div className={style.googleiconWrapper}>
+            <img
+              className={style.googleIcon}
+              src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+            />
+          </div>
+          <button onClick={handleOnClick} className={style.googleBtn}>
+            <b className={style.btnText}>Sign in with google</b>
+          </button>
+        </div>
       </div>
     );
   }

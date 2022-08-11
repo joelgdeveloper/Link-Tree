@@ -1,5 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 
+import style from "./css/linkTree.module.css";
+
 const LinkTree = ({ docId, title, url, onDelete, onUpdate }) => {
   const [currentTitle, setCurrentTitle] = useState(title);
   const [currentUrl, setCurrentUrl] = useState(url);
@@ -58,9 +60,9 @@ const LinkTree = ({ docId, title, url, onDelete, onUpdate }) => {
   };
 
   return (
-    <div key={docId}>
-      <div>
-        <div>
+    <div className={style.link}>
+      <div className={style.info}>
+        <div className={style.linkTitle}>
           {editTitle ? (
             <>
               <input
@@ -73,12 +75,17 @@ const LinkTree = ({ docId, title, url, onDelete, onUpdate }) => {
             </>
           ) : (
             <>
-              <button onClick={handleEditTitle}>edit</button>
+              <button
+                className={style.btnEdit}
+                onClick={handleEditTitle}
+              >
+                <span className="material-icons">edit</span>
+              </button>
               {currentTitle}
             </>
           )}
         </div>
-        <div>
+        <div className={style.linkUrl}>
           {editUrl ? (
             <>
               <input
@@ -91,14 +98,18 @@ const LinkTree = ({ docId, title, url, onDelete, onUpdate }) => {
             </>
           ) : (
             <>
-              <button onClick={handleEditUrl}>edit</button>
+              <button className={style.btnEdit} onClick={handleEditUrl}>
+                <span className="material-icons">edit</span>{" "}
+              </button>
               {currentUrl}
             </>
           )}
         </div>
       </div>
-      <div>
-        <button onClick={handleDelete}>Delete</button>
+      <div className={style.linkActions}>
+        <button className={style.btnDelete} onClick={handleDelete}>
+          <span className="material-icons">delete</span>
+        </button>
       </div>
     </div>
   );

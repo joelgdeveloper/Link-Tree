@@ -6,6 +6,9 @@ import { v4 as uuid } from "uuid";
 import { deleteLink, getLinks, insertNewLink, updateLink } from "../firebase/firebase";
 import LinkTree from "../components/LinkTree";
 
+import style from "./css/dashboardView.module.css";
+import styleLinks from "../components/css/linkTree.module.css";
+
 export default function DashboardView() {
   const [state, setState] = useState(0);
   const [currentUser, setCurrentUser] = useState({});
@@ -84,20 +87,20 @@ export default function DashboardView() {
     <DashboardWrapper>
       <div>
         <h1>Dashboard</h1>
-        <form action="" onSubmit={handleOnSubmit}>
+        <form className={style.entryContainer} action="" onSubmit={handleOnSubmit}>
           <label htmlFor="title">Title</label>
-          <input type="text" name="title" onChange={handleChange} />
+          <input className="inputLarge" type="text" name="title" onChange={handleChange} />
 
           <label htmlFor="url">Url</label>
-          <input type="text" name="url" onChange={handleChange} />
+          <input className="inputLarge" type="text" name="url" onChange={handleChange} />
 
-          <input type="submit" value="Create new Link" />
+          <input className="btn" type="submit" value="Create new Link" />
         </form>
 
-        <div>
+        <div className={styleLinks.linksContainer}>
           {links.map((link) => (
             <LinkTree
-              key={link.docId}
+              key={link.id}
               docId={link.docId}
               title={link.title}
               url={link.url}
