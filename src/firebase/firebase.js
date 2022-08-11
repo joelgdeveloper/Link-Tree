@@ -144,3 +144,8 @@ export const deleteLink = async (docId) => {
     console.log(error);
   }
 };
+
+
+export const setUserProfilePhoto = (uid, file) => {
+
+}
