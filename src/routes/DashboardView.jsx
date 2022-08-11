@@ -3,7 +3,7 @@ import AuthProvider from "../components/AuthProvider";
 import { Link, useNavigate } from "react-router-dom";
 import DashboardWrapper from "../components/DashboardWrapper";
 import { v4 as uuid } from "uuid";
-import { getLinks, insertNewLink } from "../firebase/firebase";
+import { deleteLink, getLinks, insertNewLink, updateLink } from "../firebase/firebase";
 import LinkTree from "../components/LinkTree";
 
 export default function DashboardView() {
@@ -68,8 +68,17 @@ export default function DashboardView() {
       setLinks([...links, newLink]);
     }
   };
-  const handleDeleteLink = () => {};
-  const handleUpdateLink = () => {};
+  const handleDeleteLink = async(docId) => {
+    await deleteLink(docId);
+    const tmp = links.filter(link => link.docId !== docId); //tmp sera un arreglo con todos los elementos, excepto el que quiero eliminar
+    setLinks([...tmp]);
+  };
+  const handleUpdateLink = async(docId, title, url) => {
+    const link = links.find(item => item.docId === docId);
+    link.title = title;
+    link.url = url;
+    await updateLink(docId, link);
+  };
 
   return (
     <DashboardWrapper>
@@ -89,6 +98,7 @@ export default function DashboardView() {
           {links.map((link) => (
             <LinkTree
               key={link.docId}
+              docId={link.docId}
               title={link.title}
               url={link.url}
               onDelete={handleDeleteLink}

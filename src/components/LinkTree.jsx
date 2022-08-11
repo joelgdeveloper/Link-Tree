@@ -46,12 +46,16 @@ const LinkTree = ({ docId, title, url, onDelete, onUpdate }) => {
 
   const handleBlurTitle = (e) => {
     setEditTitle(false);
-    onUpdate(docId, currentTitle, currentUrl)
-  }
+    onUpdate(docId, currentTitle, currentUrl);
+  };
   const handleBlurUrl = (e) => {
     setEditUrl(false);
-    onUpdate(docId, currentTitle, currentUrl)
-  }
+    onUpdate(docId, currentTitle, currentUrl);
+  };
+
+  const handleDelete = () => {
+    onDelete(docId);
+  };
 
   return (
     <div key={docId}>
@@ -94,7 +98,7 @@ const LinkTree = ({ docId, title, url, onDelete, onUpdate }) => {
         </div>
       </div>
       <div>
-        <button>Delete</button>
+        <button onClick={handleDelete}>Delete</button>
       </div>
     </div>
   );
