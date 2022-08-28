@@ -30,11 +30,11 @@ const AuthProvider = ({
 
       if (isRegistered) {
         const userInfo = await getUserInfo(user.uid);
-        console.log(userInfo);
+
         if (userInfo.processCompleted) {
           // Redirigir a dashboard
           onUserLoggedIn(userInfo);
-          console.log(userInfo.username);
+          
         }else {
           onUserNotRegistered(userInfo);
         }
@@ -50,7 +50,7 @@ const AuthProvider = ({
         });
         onUserNotRegistered(user);
       }
-      console.log(user.displayName);
+      
     } else {
       onUserNotLoggedIn();
     }

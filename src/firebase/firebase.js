@@ -46,9 +46,7 @@ export const userExist = async (uid) => {
 
   //funcion que busca la referencia
   const res = await getDoc(docRef);
-  // console.log(docRef);
-  // console.log(res);
-  //console.log(res.exists()); //nos arroja false / true
+  
 
   //hay 3 metodos, 1 data nos regresa la informacion de ese documento, 2 exists nos regresa true o false
   //3 get nos retorna el documento
