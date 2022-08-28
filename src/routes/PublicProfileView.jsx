@@ -10,6 +10,7 @@ import {
 
 import style from "./css/publicProfileView.module.css";
 import styleLinks from "../components/css/publicLink.module.css";
+import noPhoto from "./assets/no-photo.jpg";
 
 export default function PublicProfileView() {
   const params = useParams();
@@ -53,7 +54,7 @@ export default function PublicProfileView() {
   return (
     <div className={style.profileContainer}>
       <div className={style.profilePicture}>
-        <img src={url} alt="User's picture" />
+        <img src={url ? url : noPhoto} alt="User's picture" />
       </div>
       <h2>{profile?.profileInfo.username}</h2>
       <h3>{profile?.profileInfo.displayName}</h3>

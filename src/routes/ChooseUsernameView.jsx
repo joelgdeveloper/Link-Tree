@@ -19,7 +19,7 @@ export default function ChooseUsernameView() {
     setState(3);
   };
   const onUserNotLoggedIn = () => {
-    navigate("/login", { replace: true });
+    navigate("/login");
   };
 
   const handleInputUserName = (e) => {
@@ -61,8 +61,8 @@ export default function ChooseUsernameView() {
   if (state === 6) {
     return (
       <div className={style.chooseUsernameContainer}>
-        <h1>Felicidades!, ya puede ir al dashboard a crear tus links</h1>
-        <Link to="/dashboard">Continuar</Link>
+        <h1>Congratulations! You can now go to the dashboard to create your links.</h1>
+        <Link to="/dashboard">Continue</Link>
       </div>
     );
   }

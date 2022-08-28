@@ -4,4 +4,12 @@
   gap: 10px;
   padding: 10px 0;
   margin-bottom: 20px;
+  margin-top: 15px;
+}
+
+.generateLink {
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 5px;
+  font-size: 22px;
 }

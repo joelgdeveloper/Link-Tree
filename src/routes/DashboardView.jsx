@@ -87,12 +87,25 @@ export default function DashboardView() {
     <DashboardWrapper>
       <div>
         <h1>Dashboard</h1>
+        <span className="viewUrl">
+          My Url: 
+        {
+          (window.location.hostname.includes('localhost')) 
+          ? <a href={`http://${window.location.hostname}:${window.location.port}/u/${currentUser.username}`}
+          target="_blank"
+          >
+            {`   ${window.location.hostname}:${window.location.port}/u/${currentUser.username}`}
+            </a> : 
+          console.log('chau')
+        }
+        </span>
         <form className={style.entryContainer} action="" onSubmit={handleOnSubmit}>
+          <span className={style.generateLink}>Generate Links</span>
           <label htmlFor="title">Title</label>
-          <input className="inputLarge" type="text" name="title" onChange={handleChange} />
+          <input className="inputLarge" type="text" value={inputs.title ? inputs.title : "" } name="title" onChange={handleChange} />
 
           <label htmlFor="url">Url</label>
-          <input className="inputLarge" type="text" name="url" onChange={handleChange} />
+          <input className="inputLarge" type="text" value={inputs.url ? inputs.url : "" } name="url" onChange={handleChange} />
 
           <input className="btn" type="submit" value="Create new Link" />
         </form>

@@ -49,14 +49,15 @@ export default function EditProfileView() {
         //cuando pueda transformar o leer ese documento, como un arreglo de bytes
         const imageData = fileReader.result; //image data ya tiene la imagen codificada
         const res = await setUserProfilePhoto(currentUser.uid, imageData);
-        
-        if(res) {
-          const tmpUser = {...currentUser};
+
+        if (res) {
+          const tmpUser = { ...currentUser };
           tmpUser.profilePicture = res.metadata.fullPath;
           await updateUser(tmpUser);
-          setCurrentUser({...tmpUser});
-          const  url = await getProfilePhotoUrl(currentUser.profilePicture);
-          setProfileUrl(url); 
+          setCurrentUser({ ...tmpUser });
+          const url = await getProfilePhotoUrl(currentUser.profilePicture);
+          setProfileUrl(url);
+          window.location.reload();
         }
       };
     }
@@ -74,7 +75,7 @@ export default function EditProfileView() {
 
   return (
     <DashboardWrapper>
-      <div>
+      <div className="containerEditProfile">
         <h2>Edit Profile Info</h2>
         <div className={style.profilePictureContainer}>
           <div>
@@ -93,6 +94,18 @@ export default function EditProfileView() {
           </div>
         </div>
       </div>
+      <span className="viewUrl">
+        My Url:
+        {
+          (window.location.hostname.includes('localhost'))
+            ? <a href={`http://${window.location.hostname}:${window.location.port}/u/${currentUser.username}`}
+              target="_blank"
+            >
+              {`   ${window.location.hostname}:${window.location.port}/u/${currentUser.username}`}
+            </a> :
+            console.log('chau')
+        }
+      </span>
     </DashboardWrapper>
   );
 }

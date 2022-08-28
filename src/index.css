@@ -87,7 +87,7 @@ input[type="text"].input {
   border: solid 1px #ccc;
   border-radius: 3px;
   padding: 8px 10px;
-  width: 50px;
+  width: 180px;
 }
 
 input[type="text"].inputLarge {
@@ -107,4 +107,8 @@ a {
   color: rgb(13,110,184);
   font-weight: bold;
   text-decoration: none;
+}
+
+.viewUrl {
+  font-weight: bold;
 }

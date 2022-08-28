@@ -34,6 +34,7 @@ const AuthProvider = ({
         if (userInfo.processCompleted) {
           // Redirigir a dashboard
           onUserLoggedIn(userInfo);
+          console.log(userInfo.username);
         }else {
           onUserNotRegistered(userInfo);
         }
@@ -55,7 +56,9 @@ const AuthProvider = ({
     }
   };
 
-  return <div>{children}</div>;
+  return (
+  <div>{children}</div>
+  );
 };
 
 export default AuthProvider;

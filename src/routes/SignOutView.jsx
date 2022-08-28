@@ -11,12 +11,12 @@ export default function SignOutView() {
 
   const onUserNotLoggedIn = () => {
     navigate("/login", { replace: true });
-    // window.location.reload();
+    window.location.reload();
   };
 
   const onUserNotRegistered = (user) => {
     navigate("/login", { replace: true });
-    // window.location.reload();
+    window.location.reload();
   };
   return (
     <AuthProvider
