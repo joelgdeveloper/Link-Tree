@@ -96,7 +96,11 @@ export default function DashboardView() {
           >
             {`   ${window.location.hostname}:${window.location.port}/u/${currentUser.username}`}
             </a> : 
-          console.log('chau')
+          <a href={`http://${window.location.hostname}/u/${currentUser.username}`}
+          target="_blank"
+          >
+            {`   ${window.location.hostname}/u/${currentUser.username}`}
+            </a> 
         }
         </span>
         <form className={style.entryContainer} action="" onSubmit={handleOnSubmit}>

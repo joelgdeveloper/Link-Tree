@@ -14,7 +14,7 @@ import ChooseUsernameView from "./routes/ChooseUsernameView";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <Routes>
-      <Route path="/Link-Tree" element={<LoginView />} />
+      <Route path="/" element={<LoginView />} />
       <Route exact path="/login" element={<LoginView />} />
       <Route exact path="/dashboard" element={<DashboardView />} />
       <Route exact path="/dashboard/profile" element={<EditProfileView />} />
