@@ -12,7 +12,7 @@ import PublicProfileView from "./routes/PublicProfileView";
 import ChooseUsernameView from "./routes/ChooseUsernameView";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <BrowserRouter basename="/Link-Tree">
+  <BrowserRouter>
     <Routes>
       <Route path="/Link-Tree" element={<LoginView />} />
       <Route exact path="/login" element={<LoginView />} />
