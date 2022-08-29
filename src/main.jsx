@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./index.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, HashRouter } from "react-router-dom";
 
 import LoginView from "./routes/LoginView";
 import DashboardView from "./routes/DashboardView";
@@ -12,9 +12,9 @@ import PublicProfileView from "./routes/PublicProfileView";
 import ChooseUsernameView from "./routes/ChooseUsernameView";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <BrowserRouter>
+  <HashRouter>
     <Routes>
-      <Route path="/" element={<LoginView />} />
+      <Route path="/Link-Tree" element={<LoginView />} />
       <Route path="/login" element={<LoginView />} />
       <Route path="/dashboard" element={<DashboardView />} />
       <Route path="/dashboard/profile" element={<EditProfileView />} />
@@ -22,5 +22,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <Route path="u/:username" element={<PublicProfileView />} />
       <Route path="/choose-username" element={<ChooseUsernameView />} />
     </Routes>
-  </BrowserRouter>
+  </HashRouter>
 );

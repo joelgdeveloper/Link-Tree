@@ -68,7 +68,7 @@ export default function DashboardView() {
       newLink.docId = res.id;
 
       setInputs({});
-      setLinks([...links, newLink]);
+      setLinks([newLink,...links ]);
     }
   };
   const handleDeleteLink = async(docId) => {
