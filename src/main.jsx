@@ -14,13 +14,13 @@ import ChooseUsernameView from "./routes/ChooseUsernameView";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <Routes>
-      <Route path="./" element={<LoginView />} />
-      <Route path="./login" element={<LoginView />} />
-      <Route path="./dashboard" element={<DashboardView />} />
-      <Route path="./dashboard/profile" element={<EditProfileView />} />
-      <Route path="./signout" element={<SignOutView />} />
-      <Route path="./u/:username" element={<PublicProfileView />} />
-      <Route path="./choose-username" element={<ChooseUsernameView />} />
+      <Route path="/Link-Tree" element={<LoginView />} />
+      <Route path="/login" element={<LoginView />} />
+      <Route path="/dashboard" element={<DashboardView />} />
+      <Route path="/dashboard/profile" element={<EditProfileView />} />
+      <Route path="/signout" element={<SignOutView />} />
+      <Route path="/u/:username" element={<PublicProfileView />} />
+      <Route path="/choose-username" element={<ChooseUsernameView />} />
     </Routes>
   </BrowserRouter>
 );
