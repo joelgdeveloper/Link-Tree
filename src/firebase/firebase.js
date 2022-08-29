@@ -21,12 +21,12 @@ import {
 } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_APIKEY,
-  authDomain: import.meta.env.VITE_AUTHDOMAIN,
-  projectId: import.meta.env.VITE_PROJECTID,
-  storageBucket: import.meta.env.VITE_STORAGEBUCKET,
-  messagingSenderId: import.meta.env.VITE_MESSAGINGSENDERID,
-  appId: import.meta.env.VITE_APPID,
+  apiKey: 'AIzaSyBwvdq0NaDfkXRFY1hVMsV6GnQXL4x8g9c',
+  authDomain: 'treelink-firebase.firebaseapp.com',
+  projectId: 'treelink-firebase',
+  storageBucket: 'treelink-firebase.appspot.com',
+  messagingSenderId: '1071174768042',
+  appId: '1:1071174768042:web:197f79b821fc854862c7d3',
 };
 
 export const app = initializeApp(firebaseConfig);
